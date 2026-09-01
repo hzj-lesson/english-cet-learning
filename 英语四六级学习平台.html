@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英语四六级学习平台 · 2026 四六级备考版</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230d9488'/%3E%3Ctext x='50' y='68' font-size='48' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='bold'%3EEng%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#f3f6f8;--card:#ffffff;--ink:#16302e;--ink-2:#44584f;--ink-3:#8a9a92;
+    --line:#e1e9e6;--accent:#0d9488;--accent-soft:#e2f4f1;
+    --red:#d9544d;--red-soft:#fdeceb;--green:#0f9d58;--green-soft:#e8f6ef;
+    --amber:#b87900;--amber-soft:#fdf3df;--purple:#6b3fa0;--purple-soft:#f2ecfa;
+    --blue:#2563eb;--blue-soft:#eaf0fe;
+    --shadow:0 1px 3px rgba(16,48,46,.06),0 8px 24px rgba(16,48,46,.05);
+    --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0f171a;--card:#15212a;--ink:#e8f0ee;--ink-2:#a9b8b3;--ink-3:#6f807a;
+    --line:#22323a;--accent:#2dd4bf;--accent-soft:#10302c;
+    --red-soft:#3a1f1c;--green-soft:#12291e;--amber-soft:#33270e;--purple-soft:#261b38;--blue-soft:#1d2a49;
+    --shadow:0 1px 3px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+    line-height:1.7;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s;
+    background:var(--bg);color:var(--ink);
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px 80px}
+  header{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar{max-width:1080px;margin:0 auto;padding:13px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .brand{font-size:19px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:12px;height:12px;border-radius:4px;background:linear-gradient(135deg,#0d9488,#0ea5e9);display:inline-block}
+  .top-right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .count-chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:13px;color:var(--ink-2);box-shadow:var(--shadow)}
+  .count-chip b{color:var(--accent);font-variant-numeric:tabular-nums}
+  .icon-btn{background:var(--card);border:1px solid var(--line);border-radius:10px;width:38px;height:38px;font-size:17px;cursor:pointer;color:var(--ink-2);box-shadow:var(--shadow);transition:.15s}
+  .icon-btn:hover{color:var(--accent);border-color:var(--accent)}
+  nav{display:flex;gap:6px;padding:14px 0 4px;flex-wrap:wrap}
+  .tab{background:transparent;border:1px solid transparent;color:var(--ink-2);padding:9px 15px;border-radius:11px;font-size:14.5px;font-weight:600;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:6px}
+  .tab:hover{background:var(--card);color:var(--ink)}
+  .tab.active{background:var(--accent-soft);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
+  .panel{display:none;animation:fade .25s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+  .card h3{font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:8px;color:var(--ink)}
+  .card h3 .ic{font-size:18px}
+  .hero{background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#fff;border:none;position:relative;overflow:hidden}
+  .hero .sub{opacity:.92;font-size:13.5px;margin-top:4px}
+  .hero .big{font-size:30px;font-weight:800;margin-top:6px;font-variant-numeric:tabular-nums}
+  .ring-wrap{display:flex;align-items:center;gap:18px}
+  .ring{--p:0;width:96px;height:96px;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--line) 0);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ring::after{content:"";position:absolute;width:72px;height:72px;border-radius:50%;background:var(--card)}
+  .ring span{position:relative;font-weight:800;font-size:19px;color:var(--ink)}
+  .ring-wrap .meta{font-size:13px;color:var(--ink-2)}
+  .ring-wrap .meta b{color:var(--ink);font-size:15px}
+  .todo-item,.weak-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .todo-item:last-child,.weak-item:last-child{border-bottom:none}
+  .todo-item .ck{width:18px;height:18px;border-radius:5px;border:2px solid var(--line);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;transition:.15s}
+  .todo-item.done .ck{background:var(--green);border-color:var(--green)}
+  .todo-item.done .tx{text-decoration:line-through;color:var(--ink-3)}
+  .todo-item .tx{flex:1;cursor:pointer}
+  .badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+  .badge.l4{background:var(--blue-soft);color:var(--blue)}
+  .badge.l6{background:var(--purple-soft);color:var(--purple)}
+  .heatmap{display:grid;grid-template-columns:repeat(26,1fr);gap:3px}
+  .heatmap .d{aspect-ratio:1;border-radius:3px;background:var(--line)}
+  .heatmap .d.l1{background:#99e2d8}.heatmap .d.l2{background:#4fc7b8}.heatmap .d.l3{background:var(--accent)}
+  .btn{background:var(--accent);color:#fff;border:none;border-radius:11px;padding:11px 18px;font-size:14px;font-weight:700;cursor:pointer;transition:.15s;font-family:inherit}
+  .btn:hover{filter:brightness(1.06)}
+  .btn.ghost{background:var(--card);color:var(--ink-2);border:1px solid var(--line);box-shadow:var(--shadow)}
+  .btn.primary{background:var(--accent)}
+  .btn.sm{padding:7px 12px;font-size:13px}
+  .stage{margin-bottom:18px}
+  .stage-head{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+  .stage-head .sb{font-size:13px;font-weight:800;color:#fff;background:var(--accent);padding:3px 10px;border-radius:8px}
+  .stage-head .st{font-size:15px;font-weight:700}
+  .stage-head .sw{font-size:12.5px;color:var(--ink-3);margin-left:auto}
+  .task{display:flex;align-items:flex-start;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;margin-bottom:9px;background:var(--card);cursor:pointer;transition:.15s}
+  .task:hover{border-color:var(--accent);transform:translateX(2px)}
+  .task .tk{width:20px;height:20px;border-radius:6px;border:2px solid var(--line);flex-shrink:0;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff}
+  .task .info{flex:1;min-width:0}
+  .task .tn{font-weight:600;font-size:14.5px}
+  .task .td{font-size:12.5px;color:var(--ink-3);margin-top:2px}
+  .mchip{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;margin-left:6px}
+  .m0{background:var(--line);color:var(--ink-3)}
+  .m1{background:var(--amber-soft);color:var(--amber)}
+  .m2{background:var(--blue-soft);color:var(--blue)}
+  .m3{background:var(--green-soft);color:var(--green)}
+  .modal-bg{position:fixed;inset:0;background:rgba(16,48,46,.45);backdrop-filter:blur(3px);z-index:50;display:none;align-items:flex-start;justify-content:center;padding:60px 16px;overflow:auto}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--card);border-radius:18px;max-width:680px;width:100%;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:pop .2s ease}
+  @keyframes pop{from{opacity:0;transform:scale(.96) translateY(8px)}to{opacity:1;transform:none}}
+  .modal h2{font-size:19px;margin-bottom:4px}
+  .modal .mtag{font-size:12px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+  .modal .intro{font-size:13.5px;color:var(--ink-2);margin:12px 0;padding:12px;background:var(--accent-soft);border-radius:10px}
+  .sec{margin:16px 0}
+  .sec .t{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .sec ul{margin:0;padding-left:20px;font-size:14px}
+  .sec li{margin:5px 0}
+  .pill{display:inline-block;font-size:12px;padding:3px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin:3px 4px 3px 0;font-weight:600}
+  .quiz{border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0}
+  .quiz .q{font-weight:600;font-size:14px}
+  .quiz .a{color:var(--green);font-size:13.5px;margin-top:6px;display:none}
+  .quiz .a.show{display:block}
+  .quiz .btn.sm{margin-top:8px}
+  .mastery{display:flex;gap:8px;margin-top:14px}
+  .mastery button{flex:1;font-size:13px;padding:8px;border-radius:9px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-weight:600;color:var(--ink-2);transition:.15s}
+  .mastery button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .close-x{float:right;background:none;border:none;font-size:24px;cursor:pointer;color:var(--ink-3);line-height:1}
+  .pomo{display:flex;flex-direction:column;align-items:center;gap:18px;padding:10px 0}
+  .pomo-ring{--p:0;width:240px;height:240px;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--line) 0);display:flex;align-items:center;justify-content:center;position:relative}
+  .pomo-ring::after{content:"";position:absolute;width:196px;height:196px;border-radius:50%;background:var(--card)}
+  .pomo-ring .inner{position:relative;text-align:center}
+  .pomo-ring .time{font-size:52px;font-weight:800;font-variant-numeric:tabular-nums}
+  .pomo-ring .mode{font-size:14px;color:var(--ink-3);margin-top:2px}
+  .pomo-btns{display:flex;gap:10px}
+  .pomo-modes{display:flex;gap:8px}
+  .pomo-modes button{font-size:13px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink-2);font-weight:600}
+  .pomo-modes button.on{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+  .word{display:flex;align-items:flex-start;gap:14px;padding:14px;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;cursor:pointer;transition:.15s}
+  .word:hover{border-color:var(--accent)}
+  .word .wmain{flex:1}
+  .word .wt{font-size:19px;font-weight:800;color:var(--ink)}
+  .word .wp{font-size:13px;color:var(--ink-3);font-style:italic}
+  .word .wm{font-size:14px;margin-top:3px}
+  .word .we{font-size:12.5px;color:var(--ink-3);margin-top:3px;font-style:italic}
+  .word .wst{width:24px;height:24px;border-radius:50%;flex-shrink:0;margin-top:3px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700}
+  .w0{background:var(--line)}.w1{background:var(--amber)}.w2{background:var(--green)}
+  .search{position:relative;margin-bottom:14px}
+  .search input{width:100%;padding:12px 14px 12px 40px;border:1px solid var(--line);border-radius:12px;font-size:14px;font-family:inherit;background:var(--card);color:var(--ink)}
+  .search input:focus{outline:none;border-color:var(--accent)}
+  .search .si{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--ink-3);font-size:15px}
+  .res-group{margin-bottom:18px}
+  .res-group h4{font-size:14px;margin-bottom:10px;color:var(--accent)}
+  .res-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:11px;margin-bottom:9px;text-decoration:none;color:inherit;background:var(--card);transition:.15s}
+  .res-item:hover{border-color:var(--accent);transform:translateX(2px)}
+  .res-item .ri{font-size:20px;width:36px;text-align:center}
+  .res-item .rt{font-weight:600;font-size:14px}
+  .res-item .rd{font-size:12.5px;color:var(--ink-3)}
+  .res-item .ra{margin-left:auto;color:var(--ink-3);font-size:18px}
+  textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:11px;font-size:14px;font-family:inherit;background:var(--card);color:var(--ink);resize:vertical;min-height:90px}
+  textarea:focus{outline:none;border-color:var(--accent)}
+  .log-item,.note-line{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .log-item .ld,.note-line .ld{font-size:12px;color:var(--ink-3);flex-shrink:0;font-variant-numeric:tabular-nums}
+  .log-item .lt,.note-line .lt{flex:1}
+  .del{background:none;border:none;color:var(--ink-3);cursor:pointer;font-size:15px;flex-shrink:0}
+  .del:hover{color:var(--red)}
+  .empty-hint{color:var(--ink-3);font-size:13.5px;text-align:center;padding:24px 0}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:11px 20px;border-radius:12px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:100;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .stat-mini{display:flex;gap:12px;flex-wrap:wrap}
+  .stat-mini .s{background:var(--accent-soft);color:var(--accent);border-radius:11px;padding:10px 14px;font-size:13px;font-weight:700}
+  .foot{text-align:center;color:var(--ink-3);font-size:12.5px;margin-top:30px}
+  .lvl-filter{display:flex;gap:6px;margin-bottom:14px}
+  .lvl-filter button{font-size:13px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink-2);font-weight:600}
+  .lvl-filter button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .hint{font-size:12.5px;color:var(--ink-3);margin-top:8px}
+  .flashcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px;text-align:center;cursor:pointer;min-height:220px;display:flex;flex-direction:column;justify-content:center;gap:12px;user-select:none}
+  .flashcard .fw{font-size:34px;font-weight:800}
+  .flashcard .fp{font-size:16px;color:var(--ink-3);font-style:italic}
+  .flashcard .fa{font-size:17px}
+  .flashcard .ftip{font-size:12.5px;color:var(--ink-3);margin-top:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>英语四六级学习平台 <span style="font-size:12px;color:var(--ink-3);font-weight:600">· 2026 四六级备考版</span></div>
+    <div class="top-right">
+      <div class="count-chip">距 <b id="examLabel">下次考试</b> 还有 <b id="examDays">--</b> 天</div>
+      <button class="icon-btn" id="btnBackup" title="导出备份">⬇</button>
+      <button class="icon-btn" id="btnImport" title="导入备份">⬆</button>
+      <button class="icon-btn" id="btnSnap" title="快照恢复">🛟</button>
+      <button class="icon-btn" id="btnTheme" title="切换深色模式">🌙</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <nav>
+    <button class="tab active" data-tab="dash">📊 仪表盘</button>
+    <button class="tab" data-tab="tasks">🗂️ 路线任务</button>
+    <button class="tab" data-tab="pomo">🍅 番茄钟</button>
+    <button class="tab" data-tab="words">📚 单词本</button>
+    <button class="tab" data-tab="notes">📝 笔记日志</button>
+    <button class="tab" data-tab="res">🔗 资源</button>
+  </nav>
+
+  <!-- 仪表盘 -->
+  <section class="panel active" id="panel-dash">
+    <div class="grid g2">
+      <div class="card hero" style="grid-column:1/-1">
+        <div class="sub">当前备考目标</div>
+        <div class="big" id="heroExam">2026 年 12 月四六级笔试</div>
+        <div class="sub" id="heroSub" style="margin-top:8px"></div>
+      </div>
+    </div>
+    <div class="grid g3">
+      <div class="card">
+        <h3><span class="ic">🎯</span> 总体进度</h3>
+        <div class="ring-wrap">
+          <div class="ring" id="progRing"><span id="progPct">0%</span></div>
+          <div class="meta">
+            <div>已完成 <b id="progDone">0</b> / <span id="progTotal">0</span> 个任务</div>
+            <div>已精通 <b id="progMaster">0</b> 个</div>
+            <div style="margin-top:6px"><span class="badge l4" id="lvl4cnt">CET-4 ×0</span> <span class="badge l6" id="lvl6cnt">CET-6 ×0</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><span class="ic">📅</span> 今日打卡</h3>
+        <div id="dashCheckin"></div>
+        <button class="btn" id="dashCheckinBtn" style="margin-top:12px;width:100%">✔ 今日打卡</button>
+      </div>
+      <div class="card">
+        <h3><span class="ic">📚</span> 单词本</h3>
+        <div class="ring-wrap">
+          <div class="ring" id="vocabRing" style="--p:0;background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--line) 0)"><span id="vocabPct">0%</span></div>
+          <div class="meta">
+            <div>已记住 <b id="vocabDone">0</b> / <span id="vocabTotal">0</span></div>
+            <div>今日待复习 <b id="vocabReview">0</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card">
+        <h3><span class="ic">✅</span> 待办清单（本周主攻）</h3>
+        <div id="dashTodo"></div>
+      </div>
+      <div class="card">
+        <h3><span class="ic">🔥</span> 26 周打卡热力图</h3>
+        <div class="heatmap" id="heatmap" style="margin-top:6px"></div>
+        <div class="hint">颜色越深代表当日打卡越密集（含任务与单词打卡）。</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3><span class="ic">⚠️</span> 待攻克薄弱点</h3>
+      <div id="dashWeak"></div>
+    </div>
+  </section>
+
+  <!-- 路线任务 -->
+  <section class="panel" id="panel-tasks">
+    <div class="lvl-filter" id="taskFilter">
+      <button class="on" data-lvl="all">全部</button>
+      <button data-lvl="l4">仅四级 CET-4</button>
+      <button data-lvl="l6">仅六级 CET-6</button>
+    </div>
+    <div id="stagesBox"></div>
+  </section>
+
+  <!-- 番茄钟 -->
+  <section class="panel" id="panel-pomo">
+    <div class="card" style="max-width:520px;margin:0 auto">
+      <h3 style="justify-content:center"><span class="ic">🍅</span> 专注番茄钟</h3>
+      <div class="pomo">
+        <div class="pomo-ring" id="pomoRing"><div class="inner"><div class="time" id="pomoTime">25:00</div><div class="mode" id="pomoMode">专注</div></div></div>
+        <div class="pomo-modes" id="pomoModes">
+          <button class="on" data-m="work">专注 25′</button>
+          <button data-m="short">短休 5′</button>
+          <button data-m="long">长休 15′</button>
+        </div>
+        <div class="pomo-btns">
+          <button class="btn primary" id="pomoToggle">开始</button>
+          <button class="btn ghost" id="pomoReset">重置</button>
+        </div>
+        <div class="stat-mini" style="justify-content:center;margin-top:4px">
+          <div class="s">今日专注 <span id="pomoToday">0</span> 分钟</div>
+          <div class="s">累计专注 <span id="pomoTotal">0</span> 分钟</div>
+        </div>
+        <div class="hint" style="text-align:center">提示：每完成 4 个专注番茄自动建议长休。计时用时间戳校准，后台/锁屏不丢秒。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 单词本 -->
+  <section class="panel" id="panel-words">
+    <div class="card" id="flashCardBox" style="max-width:620px;margin:0 auto 16px">
+      <h3 style="justify-content:center"><span class="ic">🃏</span> 闪卡复习（今日待复习 <span id="fcCount">0</span>）</h3>
+      <div class="flashcard" id="flashCard">
+        <div class="fw" id="fcWord">单词</div>
+        <div class="fp" id="fcPhon">/phon/</div>
+        <div class="ftip" id="fcTip">点击卡片翻面查看释义 · 再次点击标记记忆状态</div>
+      </div>
+      <div class="row" style="justify-content:center;margin-top:14px">
+        <button class="btn ghost sm" data-ws="0">😶 没记住</button>
+        <button class="btn ghost sm" data-ws="1">🤔 模糊</button>
+        <button class="btn sm" data-ws="2">😎 已记住</button>
+      </div>
+    </div>
+    <div class="search">
+      <span class="si">🔍</span>
+      <input id="wordSearch" placeholder="搜索单词、释义或例句…">
+    </div>
+    <div class="lvl-filter" id="wordFilter">
+      <button class="on" data-wlvl="all">全部</button>
+      <button data-wlvl="l4">四级</button>
+      <button data-wlvl="l6">六级</button>
+      <button data-wlvl="w2">已记住</button>
+      <button data-wlvl="un">未掌握</button>
+    </div>
+    <div id="wordList"></div>
+  </section>
+
+  <!-- 笔记日志 -->
+  <section class="panel" id="panel-notes">
+    <div class="grid g2">
+      <div class="card">
+        <h3><span class="ic">📒</span> 学习笔记</h3>
+        <textarea id="noteBox" placeholder="随时记录语法点、易混词、写作句型…"></textarea>
+        <div class="row" style="margin-top:10px;justify-content:space-between">
+          <span id="noteStatus" style="font-size:12.5px;color:var(--green)"></span>
+          <button class="btn sm" id="noteSave">保存笔记</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3><span class="ic">📝</span> 每日学习日志</h3>
+        <textarea id="logBox" placeholder="今天背了哪些词？听力练了什么？写作写了几篇？"></textarea>
+        <div class="row" style="margin-top:10px;justify-content:flex-end">
+          <button class="btn sm" id="logAdd">记一条</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3><span class="ic">📜</span> 日志时间线</h3>
+      <div id="logList"></div>
+    </div>
+  </section>
+
+  <!-- 资源 -->
+  <section class="panel" id="panel-res">
+    <div id="resBox"></div>
+  </section>
+
+  <div class="foot">英语四六级学习平台 · 本地单文件应用 · 数据仅存于本浏览器，记得定期「⬇ 导出备份」</div>
+</div>
+
+<!-- 通用弹窗 -->
+<div class="modal-bg" id="modal">
+  <div class="modal" id="modalBox"></div>
+</div>
+<!-- 导入弹窗 -->
+<div class="modal-bg" id="importModal">
+  <div class="modal">
+    <button class="close-x" onclick="closeModal()">×</button>
+    <h2>导入备份</h2>
+    <div class="intro">粘贴此前导出的 JSON 文本，或选择文件。导入前会自动创建快照，误操作可从「🛟 快照恢复」找回。</div>
+    <textarea id="importText" placeholder="在此粘贴备份 JSON…" style="min-height:160px"></textarea>
+    <div class="row" style="margin-top:12px;justify-content:flex-end">
+      <button class="btn ghost" onclick="document.getElementById('importFile').click()">选择文件</button>
+      <input type="file" id="importFile" accept=".json" style="display:none">
+      <button class="btn primary" id="importDo">导入</button>
+    </div>
+  </div>
+</div>
+<input type="file" id="importFileHidden" accept=".json" style="display:none">
+<div class="toast" id="toast"></div>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const KEY="cet_learn_v1";
+
+/* ===== 考试信息 ===== */
+const EXAM={ date:"2026-12-19", label:"2026年12月四六级笔试", oral:"2026-11-21" };
+
+/* ===== 备考路线 S0-S3 ===== */
+const STAGES=[
+ { id:"s0", badge:"S0", title:"基础起步：摸底词汇、吃透四大题型", when:"2026.09 – 2026.10",
+  tasks:[
+   ["词汇摸底与四级核心词启动","测当前词汇量，建立每日背词节奏，先啃最高频 1500 词"],
+   ["题型全解：写作 15%","三段式结构（引言-主体-结论）+ 模板句与连接词"],
+   ["题型全解：听力 35%","四级：短新闻/长对话/听力篇章；六级：加讲座。抓关键词与同义替换"],
+   ["题型全解：阅读 35%","选词填空、长篇匹配、仔细阅读三种题型的定位与排除法"],
+   ["题型全解：翻译 15%","汉译英段落，重点练中国文化/社会热点类话题"],
+   ["六级专属：听力讲座与长对话","六级听力语速更快、学术词更多，提前适应讲座结构"],
+   ["音标与连读突破（听力地基）","纠正发音、熟悉连读弱读，提升听音辨词能力"],
+   ["建立每日背词+精听习惯","固定 30 分钟背词 + 15 分钟精听，形成肌肉记忆"]
+  ]},
+ { id:"s1", badge:"S1", title:"模块强化：分项突破，正确率上 80%", when:"2026.11 – 2027.02",
+  tasks:[
+   ["四级高频词第一遍（1500）","按频序刷完四级核心词，配例句与搭配记忆"],
+   ["六级高频词第一遍（1500）","六级核心词 + 学术词，注意一词多义与熟词僻义"],
+   ["听力精听训练：听写+跟读","逐句听写、对照原文、跟读模仿，磨耳朵"],
+   ["阅读：选词填空技巧","先判词性再回填，利用语法与搭配快速排除"],
+   ["阅读：长篇匹配+仔细阅读","匹配题先看题干划关键词；仔细阅读定位原文找同义替换"],
+   ["写作：三段式模板与万能句","积累开头/过渡/结尾句，形成可复用写作框架"],
+   ["翻译：中国文化与社会热点","练四字格、定语从句、被动语态，积累主题词汇"],
+   ["阶段模考与复盘方法论","第一次完整模考，建立错题分析体系"]
+  ]},
+ { id:"s2", badge:"S2", title:"套卷实战：真题为王，稳住正确率", when:"2027.03 – 2027.06",
+  tasks:[
+   ["四级真题套卷（近 5 年）","限时 125 分钟完整做一套并逐题复盘"],
+   ["六级真题套卷（近 5 年）","六级难度更高，重点练听力与阅读的耐心定位"],
+   ["限时训练与时间分配","确定各模块时间预算：写作30/听力30/阅读40/翻译30"],
+   ["错题清零与薄弱模块回炉","错题本清零计划，薄弱模块重新专项突破"],
+   ["听力正确率攻坚","目标 70%+：预读选项、抓信号词、排除绝对化选项"],
+   ["阅读正确率攻坚","目标 80%+：精确定位 + 同义替换识别 + 排除干扰项"],
+   ["全真模考与考场节奏","按考试日全真模拟，训练心态与精力分配"],
+   ["写作批改与范文精读","对照范文打磨语言，积累高级表达与句型"]
+  ]},
+ { id:"s3", badge:"S3", title:"考前冲刺：临门一脚", when:"2027.06 – 2027.12",
+  tasks:[
+   ["报名与准考证（口试+笔试）","按时完成报名、缴费，考前打印准考证"],
+   ["考前全真模拟冲刺","按考试日全真模拟 2 周，固化节奏"],
+   ["高频词汇最后过遍","考前快速过核心词与易混词，防遗忘"],
+   ["写作预测与模板背诵","背熟 2-3 套万能框架，备好图表/议论文模板"],
+   ["翻译热点预测（时政/文化）","练最新热点话题，积累相关主题表达"],
+   ["听力冲刺：高频场景词","集中记校园、学术、生活场景高频词与信号词"],
+   ["考前心态与临场策略","合理弃题、涂卡节奏、时间兜底策略"]
+  ]}
+];
+/* 任务级别标签：0=四级 1=六级 2=四级+六级通用 */
+const TASK_LVL={
+ "s0_0":2,"s0_1":2,"s0_2":2,"s0_3":2,"s0_4":2,"s0_5":1,"s0_6":2,"s0_7":2,
+ "s1_0":0,"s1_1":1,"s1_2":2,"s1_3":0,"s1_4":0,"s1_5":2,"s1_6":2,"s1_7":2,
+ "s2_0":0,"s2_1":1,"s2_2":2,"s2_3":2,"s2_4":2,"s2_5":2,"s2_6":2,"s2_7":2,
+ "s3_0":2,"s3_1":2,"s3_2":2,"s3_3":2,"s3_4":2,"s3_5":2,"s3_6":2
+};
+const LVL_TXT={0:"CET-4",1:"CET-6",2:"CET-4/6"};
+
+/* ===== 知识点详解 TERMS ===== */
+const TERMS={};
+Object.assign(TERMS,{
+ "s0_1":{intro:["写作 Writing","占卷面 15%，约 30 分钟，要求 120-180 词（四级）/150-200 词（六级）。","本质是「结构清晰 + 语言准确 + 论点支撑」，模板能保底但不能堆砌。"],
+  points:["三段式：引言段(亮观点)→ 主体段(2-3 论点+论据)→ 结论段(升华)","积累万能连接词：firstly, moreover, nevertheless, in conclusion","背诵 5 个高级句型替换口语表达"],
+  pitfalls:["模板痕迹过重、句式单一被扣分","字数不足或远超都影响得分"],
+  quiz:["写作占比多少？建议时长？"],answer:["15%，建议 30 分钟，结构完整优先于华丽辞藻。"],
+  deep:["背熟 3 套不同话题框架","每周仿写 1 篇并对照范文改"]},
+ "s0_2":{intro:["听力 Listening","占卷面 35%，是四六级分差关键。四级含短新闻/长对话/篇章；六级新增讲座。","核心能力：听音辨词 + 抓关键词 + 同义替换识别。"],
+  points:["放音前速读选项，预判话题与可能的提问","抓信号词：but/however/therefore/firstly","答案常是原文的同义替换而非原词"],
+  pitfalls:["纠结上一题漏听下一题","被原词干扰项迷惑（听到原词≠答案）"],
+  quiz:["听到原文原词就一定是答案吗？"],answer:["不一定。正确答案多为同义替换，原词常是干扰项。"],
+  deep:["每日 15 分钟精听+跟读","整理高频场景词表"]},
+ "s0_3":{intro:["阅读 Reading","占 35%，三种题型：选词填空(5%)、长篇匹配(10%)、仔细阅读(20%)。","性价比排序：仔细阅读 > 长篇匹配 > 选词填空。"],
+  points:["仔细阅读：先题后文，定位原文找同义替换","长篇匹配：划题干关键词，扫读段落首尾","选词填空：先判词性再回填"],
+  pitfalls:["在选词填空耗时过多拖累整体","主观臆断，脱离原文选「感觉对」的选项"],
+  quiz:["阅读三种题型分值占比排序？"],answer:["仔细阅读 20% > 长篇匹配 10% > 选词填空 5%，时间优先给仔细阅读。"],
+  deep:["每天 2 篇仔细阅读精练","建立错题归因本"]},
+ "s0_4":{intro:["翻译 Translation","占 15%，汉译英段落，约 30 分钟，常考中国文化、社会、经济类。","考查：语法正确性 + 词汇准确性 + 句式多样性。"],
+  points:["先理解中文主干，再拆分英文句子","熟练使用定语从句、分词结构、被动语态","积累文化专有词：四大发明、节气、传统工艺等"],
+  pitfalls:["逐字硬译导致中式英语","时态混乱、主谓不一致等基础语法错误"],
+  quiz:["翻译常考哪类话题？"],answer:["中国文化、社会发展、经济成就类，需提前积累主题词汇。"],
+  deep:["每周 2 段真题翻译精练","背诵 20 个高频文化表达"]},
+ "s1_2":{intro:["精听 Intensive Listening","逐句听写+跟读，是最快的听力提升法。","目标：把『听不清』变成『听得懂』。"],
+  points:["听一句写一句，写不出反复听（最多 5 遍）","对照原文标出错处：生词/连读/弱读","模仿跟读，纠正语音同时强化听感"],
+  pitfalls:["只泛听不精听，进步缓慢","遇到听不出的词直接跳过不查"],
+  quiz:["精听的正确做法？"],answer:["逐句听写+对照+跟读，定位听不懂的具体原因。"],
+  deep:["用真题听力做精听素材","整理个人听力生词本"]},
+ "s2_2":{intro:["时间分配 Time Budget","125 分钟完成写作+听力+阅读+翻译。","写作30 / 听力30 / 阅读40 / 翻译25，留 5 分钟涂卡。"],
+  points:["听力一结束立即收答题卡1，写完作文别恋战","阅读先做仔细阅读保分","翻译留足 25 分钟，别拖到最后一刻"],
+  pitfalls:["作文超时挤占听力","最后 5 分钟才发现没涂卡"],
+  quiz:["建议各模块时间？"],answer:["写作30′ 听力30′ 阅读40′ 翻译25′，余5′涂卡。"],
+  deep:["严格限时模考训练","形成固定做题顺序"]}
+});
+function termOf(id){return TERMS[id]||{intro:["该任务要点","按路线推进，结合真题练习巩固。"],points:["按时完成阶段任务，配合真题训练","标记掌握度，定期复习薄弱项"],pitfalls:["避免只看不练"],quiz:["本任务的核心目标是什么？"],answer:["按阶段计划推进，形成可复用的应试能力。"],deep:["结合真题巩固","考前回顾总结"]};}
+
+/* ===== 高频词汇 VOCAB ===== */
+const VOCAB=[
+ {w:"abandon",py:"/əˈbændən/",m:"v. 抛弃；放弃",ex:"They abandoned the plan. 他们放弃了计划。",lvl:0},
+ {w:"abundant",py:"/əˈbʌndənt/",m:"adj. 丰富的；充裕的",ex:"abundant resources 丰富的资源",lvl:0},
+ {w:"accomplish",py:"/əˈkʌmplɪʃ/",m:"v. 完成；实现",ex:"accomplish a goal 实现目标",lvl:0},
+ {w:"accurate",py:"/ˈækjərət/",m:"adj. 准确的；精确的",ex:"an accurate answer 准确答案",lvl:0},
+ {w:"acquire",py:"/əˈkwaɪər/",m:"v. 获得；习得",ex:"acquire knowledge 习得知识",lvl:0},
+ {w:"adequate",py:"/ˈædɪkwət/",m:"adj. 充足的；适当的",ex:"adequate preparation 充分准备",lvl:0},
+ {w:"anticipate",py:"/ænˈtɪsɪpeɪt/",m:"v. 预期；期待",ex:"anticipate problems 预见问题",lvl:0},
+ {w:"appreciate",py:"/əˈpriːʃieɪt/",m:"v. 欣赏；感激；理解",ex:"I appreciate your help. 感谢你的帮助。",lvl:0},
+ {w:"circumstance",py:"/ˈsɜːkəmstæns/",m:"n. 环境；情况",ex:"under no circumstances 无论如何都不",lvl:0},
+ {w:"comprehensive",py:"/ˌkɒmprɪˈhensɪv/",m:"adj. 综合的；全面的",ex:"a comprehensive review 全面复习",lvl:0},
+ {w:"consequence",py:"/ˈkɒnsɪkwəns/",m:"n. 结果；后果",ex:"as a consequence 因此",lvl:0},
+ {w:"deliberate",py:"/dɪˈlɪbərət/",m:"adj. 故意的；深思熟虑的",ex:"a deliberate mistake 故意的错误",lvl:0},
+ {w:"eliminate",py:"/ɪˈlɪmɪneɪt/",m:"v. 消除；淘汰",ex:"eliminate poverty 消除贫困",lvl:0},
+ {w:"fundamental",py:"/ˌfʌndəˈmentl/",m:"adj. 基本的；根本的",ex:"fundamental skills 基本功",lvl:0},
+ {w:"genuine",py:"/ˈdʒenjʊɪn/",m:"adj. 真实的；真诚的",ex:"a genuine smile 真诚的微笑",lvl:0},
+ {w:"illustrate",py:"/ˈɪləstreɪt/",m:"v. 说明；阐明",ex:"The chart illustrates... 图表说明了…",lvl:0},
+ {w:"negotiate",py:"/nɪˈɡəʊʃieɪt/",m:"v. 谈判；协商",ex:"negotiate a deal 谈成一笔交易",lvl:0},
+ {w:"obstacle",py:"/ˈɒbstəkl/",m:"n. 障碍；阻碍",ex:"overcome an obstacle 克服障碍",lvl:0},
+ {w:"phenomenon",py:"/fəˈnɒmɪnən/",m:"n. 现象",ex:"a natural phenomenon 自然现象",lvl:0},
+ {w:"significant",py:"/sɪɡˈnɪfɪkənt/",m:"adj. 重要的；显著的",ex:"a significant change 显著变化",lvl:0},
+ {w:"abolish",py:"/əˈbɒlɪʃ/",m:"v. 废除；废止",ex:"abolish the law 废除该法律",lvl:1},
+ {w:"abstract",py:"/ˈæbstrækt/",m:"adj. 抽象的；n. 摘要",ex:"an abstract concept 抽象概念",lvl:1},
+ {w:"accumulate",py:"/əˈkjuːmjəleɪt/",m:"v. 积累；积聚",ex:"accumulate experience 积累经验",lvl:1},
+ {w:"acknowledge",py:"/əkˈnɒlɪdʒ/",m:"v. 承认；致谢",ex:"acknowledge a mistake 承认错误",lvl:1},
+ {w:"adverse",py:"/ˈædvɜːs/",m:"adj. 不利的；相反的",ex:"adverse effects 不利影响",lvl:1},
+ {w:"ambiguous",py:"/æmˈbɪɡjʊəs/",m:"adj. 模棱两可的",ex:"an ambiguous answer 含糊的回答",lvl:1},
+ {w:"compulsory",py:"/kəmˈpʌlsəri/",m:"adj. 强制的；义务的",ex:"compulsory education 义务教育",lvl:1},
+ {w:"conspicuous",py:"/kənˈspɪkjʊəs/",m:"adj. 显眼的；明显的",ex:"a conspicuous mistake 明显的错误",lvl:1},
+ {w:"deterioration",py:"/dɪˌtɪəriəˈreɪʃn/",m:"n. 恶化；退化",ex:"environmental deterioration 环境恶化",lvl:1},
+ {w:"transcend",py:"/trænˈsend/",m:"v. 超越；胜过",ex:"transcend boundaries 超越边界",lvl:1},
+ {w:"versatile",py:"/ˈvɜːsətaɪl/",m:"adj. 多才多艺的；多功能的",ex:"a versatile actor 多才多艺的演员",lvl:1},
+ {w:"vulnerable",py:"/ˈvʌlnərəbl/",m:"adj. 脆弱的；易受伤害的",ex:"vulnerable groups 弱势群体",lvl:1}
+];
+
+/* ===== 资源 RESOURCE ===== */
+const RES=[
+ {h:"背单词工具",items:[
+   ["墨墨背单词","四六级核心词库+抗遗忘算法","https://www.maimemo.com/"],
+   ["不背单词","真实语境例句，界面清爽","https://www.bubeidanci.com/"],
+   ["百词斩","图背单词，入门友好","https://www.baicizhan.com/"]
+ ]},
+ {h:"听力与口语",items:[
+   ["每日英语听力","精听素材+四六级真题音频","https://www.eudic.net/ting/"],
+   ["VOA / BBC Learning English","慢速新闻，练听力+积累表达","https://learningenglish.voanews.com/"],
+   ["TED","六级讲座类听力进阶素材","https://www.ted.com/"]
+ ]},
+ {h:"真题与资料",items:[
+   ["全国大学英语四六级考试官网","报名/成绩/大纲权威入口","https://cet.neea.edu.cn/"],
+   ["星火英语","真题试卷+专项突破","https://www.sparke.cn/"],
+   ["华研外语","真题详解+词汇书","https://www.huayan.com.cn/"]
+ ]},
+ {h:"写作与翻译",items:[
+   ["Grammarly","英语写作语法纠错","https://www.grammarly.com/"],
+   ["chinadaily 双语新闻","翻译热点素材+地道表达","https://www.chinadaily.com.cn/"],
+   ["网易有道词典","查词+例句+作文批改","https://www.youdao.com/"]
+ ]}
+];
+
+/* ===== 状态 ===== */
+const TASK_IDS=STAGES.flatMap(s=>s.tasks.map((_,i)=>`${s.id}_${i}`));
+const MASTERY=["未学","学习中","能运用","已精通"];
+function defaultState(){
+  return {checkins:{},checkinTasks:{},stageStatus:{},notes:"",logs:[],vocab:{},pomo:{total:0,today:0,date:todayStr()},theme:"light",snap:null};
+}
+let state=defaultState();
+function todayStr(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+function load(){
+  try{const r=localStorage.getItem(KEY);if(r){state=Object.assign(defaultState(),JSON.parse(r));
+    if(state.pomo.date!==todayStr()){state.pomo.date=todayStr();state.pomo.today=0;}
+  }}catch(e){}
+}
+function esc2(s){return esc(s);}
+
+/* ===== 渲染：仪表盘 ===== */
+function examCountdown(){
+  const now=new Date();const ex=new Date(EXAM.date+"T09:00:00");
+  const days=Math.max(0,Math.ceil((ex-now)/86400000));
+  $("#examDays").textContent=days;
+  $("#examLabel").textContent=EXAM.label;
+  $("#heroExam").textContent=EXAM.label;
+  $("#heroSub").textContent=`口试 ${EXAM.oral} · 笔试 ${EXAM.date} · 还有 ${days} 天，冲！`;
+}
+function renderDash(){
+  examCountdown();
+  const total=TASK_IDS.length;
+  const done=TASK_IDS.filter(id=>state.stageStatus[id]>=2).length;
+  const master=TASK_IDS.filter(id=>state.stageStatus[id]>=3).length;
+  const pct=Math.round(done/total*100);
+  $("#progRing").style.setProperty("--p",pct);$("#progPct").textContent=pct+"%";
+  $("#progDone").textContent=done;$("#progTotal").textContent=total;$("#progMaster").textContent=master;
+  const l4=TASK_IDS.filter(id=>TASK_LVL[id]!==1).length;
+  const l6=TASK_IDS.filter(id=>TASK_LVL[id]!==0).length;
+  $("#lvl4cnt").textContent="CET-4 ×"+l4;$("#lvl6cnt").textContent="CET-6 ×"+l6;
+  // 打卡
+  const t=todayStr();
+  const ck=state.checkins[t];
+  let ckHtml;
+  if(ck){
+    const extra = state.checkinTasks[t] ? (" · "+esc(stName(state.checkinTasks[t]))) : "";
+    ckHtml = `<div class="row" style="color:var(--green);font-weight:600">✔ 今日已打卡${extra}</div>`;
+  } else {
+    ckHtml = `<div style="color:var(--ink-3);font-size:13.5px">今天还没打卡，点下面按钮记录学习轨迹～</div>`;
+  }
+  $("#dashCheckin").innerHTML=ckHtml;
+  $("#dashCheckinBtn").textContent=ck?"✓ 已打卡（再点可改）":"✔ 今日打卡";
+  // 待办：未完成且靠前的任务
+  const todos=TASK_IDS.filter(id=>state.stageStatus[id]<2).slice(0,6);
+  $("#dashTodo").innerHTML=todos.length?todos.map(id=>{
+    const st=state.stageStatus[id]||0;
+    return `<div class="todo-item"><span class="ck"></span><span class="tx" data-go-task="${id}">${esc(stName(id))} <span class="badge l${TASK_LVL[id]===1?6:(TASK_LVL[id]===0?4:4)}">${LVL_TXT[TASK_LVL[id]]}</span></span></div>`;
+  }).join(""):`<div class="empty-hint">🎉 待办已清空，继续保持！</div>`;
+  // 单词本
+  const vt=VOCAB.length;const vd=VOCAB.filter(v=>state.vocab[v.w]&&state.vocab[v.w].s>=2).length;
+  const vpct=Math.round(vd/vt*100);
+  $("#vocabRing").style.setProperty("--p",vpct);$("#vocabPct").textContent=vpct+"%";
+  $("#vocabDone").textContent=vd;$("#vocabTotal").textContent=vt;
+  const review=reviewList().length;$("#vocabReview").textContent=review;
+  // 热力图
+  renderHeatmap();
+  // 薄弱点
+  renderWeak();
+  // 番茄
+  $("#pomoToday").textContent=state.pomo.today;$("#pomoTotal").textContent=state.pomo.total;
+}
+function stName(id){const [sid,idx]=id.split("_");const st=STAGES.find(s=>s.id===sid);return st?st.tasks[+idx][0]:id;}
+function renderHeatmap(){
+  const box=$("#heatmap");let h="";
+  for(let i=0;i<26*7;i++){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const key=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+    let lvl=0;
+    if(state.checkins[key]) lvl=1;
+    const wcount=VOCAB.filter(v=>state.vocab[v.w]&&state.vocab[v.w].ts===key).length;
+    if(wcount>=5||state.checkins[key]) lvl=Math.max(lvl,3);
+    else if(wcount>=2||state.checkins[key]) lvl=Math.max(lvl,2);
+    h+=`<div class="d l${lvl}" title="${key}"></div>`;
+  }
+  box.innerHTML=h;
+}
+function renderWeak(){
+  const weak=TASK_IDS.filter(id=>(state.stageStatus[id]||0)<2).map(id=>({id,name:stName(id),lvl:TASK_LVL[id]})).slice(0,5);
+  const wv=VOCAB.filter(v=>!state.vocab[v.w]||state.vocab[v.w].s<2).slice(0,5).map(v=>({w:v.w}));
+  let h="";
+  if(weak.length)h+=weak.map(x=>`<div class="weak-item"><span class="badge l${x.lvl===1?6:4}">${LVL_TXT[x.lvl]}</span><span class="tx" data-go-task="${x.id}" style="cursor:pointer;flex:1">${esc(x.name)}</span><span class="mchip m0">未掌握</span></div>`).join("");
+  if(wv.length)h+=wv.map(x=>`<div class="weak-item"><span class="badge">词</span><span class="tx" data-go-words="1" style="cursor:pointer;flex:1">${esc(x.w)}</span><span class="mchip m0">未记</span></div>`).join("");
+  if(!h)h=`<div class="empty-hint">暂无显著薄弱点，保持节奏！</div>`;
+  $("#dashWeak").innerHTML=h;
+}
+
+/* ===== 渲染：路线任务 ===== */
+let taskFilter="all";
+function renderTasks(){
+  const box=$("#stagesBox");
+  box.innerHTML=STAGES.map(st=>{
+    const tasks=st.tasks.map((t,i)=>{
+      const id=`${st.id}_${i}`;const lvl=TASK_LVL[id];
+      if(taskFilter==="l4"&&lvl===1) return "";
+      if(taskFilter==="l6"&&lvl===0) return "";
+      const sts=state.stageStatus[id]||0;
+      return `<div class="task" data-open="${id}">
+        <div class="tk m${sts}" data-toggle="${id}">${sts?"✓":""}</div>
+        <div class="info"><div class="tn">${esc(t[0])} <span class="badge l${lvl===1?6:(lvl===0?4:4)}">${LVL_TXT[lvl]}</span></div><div class="td">${esc(t[1])}</div></div>
+        <span class="mchip m${sts}">${MASTERY[sts]}</span>
+      </div>`;
+    }).join("");
+    return `<div class="stage"><div class="stage-head"><span class="sb">${st.badge}</span><span class="st">${esc(st.title)}</span><span class="sw">${esc(st.when)}</span></div>${tasks}</div>`;
+  }).join("");
+}
+
+/* ===== 渲染：资源 ===== */
+function renderRes(){
+  $("#resBox").innerHTML=RES.map(g=>{
+    const items=g.items.map(it=>`<a class="res-item" href="${esc(it[2])}" target="_blank" rel="noopener"><span class="ri">🔗</span><div><div class="rt">${esc(it[0])}</div><div class="rd">${esc(it[1])}</div></div><span class="ra">↗</span></a>`).join("");
+    return `<div class="res-group"><h4>${esc(g.h)}</h4>${items}</div>`;
+  }).join("");
+}
+
+/* ===== 渲染：笔记日志 ===== */
+function renderNotes(){
+  $("#noteBox").value=state.notes||"";
+  $("#logList").innerHTML=state.logs.length?state.logs.map((l,i)=>`<div class="log-item"><span class="ld">${esc(l.ts)}</span><span class="lt">${esc(l.text)}</span><button class="del" data-i="${i}">✕</button></div>`).join(""):`<div class="empty-hint">还没有日志，学完第一个任务就来记一条吧。</div>`;
+}
+
+/* ===== 单词本 ===== */
+function reviewList(){
+  return VOCAB.filter(v=>{const s=state.vocab[v.w];return !s||s.s<2;});
+}
+let flashIdx=0;let flipped=false;
+function renderWords(filter="all",kw=""){
+  kw=(kw||"").toLowerCase();
+  let list=VOCAB.filter(v=>{
+    if(filter==="l4"&&v.lvl!==0)return false;
+    if(filter==="l6"&&v.lvl!==1)return false;
+    if(filter==="w2"&&!(state.vocab[v.w]&&state.vocab[v.w].s>=2))return false;
+    if(filter==="un"&&(state.vocab[v.w]&&state.vocab[v.w].s>=2))return false;
+    if(kw&&!(v.w.toLowerCase().includes(kw)||v.m.toLowerCase().includes(kw)||v.ex.toLowerCase().includes(kw)))return false;
+    return true;
+  });
+  $("#wordList").innerHTML=list.length?list.map(v=>{
+    const s=state.vocab[v.w]?state.vocab[v.w].s:0;
+    return `<div class="word" data-word="${esc(v.w)}">
+      <div class="wmain"><div class="wt">${esc(v.w)}</div><div class="wp">${esc(v.py)}</div><div class="wm">${esc(v.m)}</div><div class="we">${esc(v.ex)}</div></div>
+      <div class="wst w${s}" title="${["未记","模糊","已记住"][s]}">${["?",":|","✓"][s]}</div>
+    </div>`;
+  }).join(""):`<div class="empty-hint">没有匹配的单词。</div>`;
+}
+function renderFlash(){
+  const list=reviewList();
+  $("#fcCount").textContent=list.length;
+  if(!list.length){$("#flashCard").innerHTML=`<div class="fw">🎉</div><div class="fp">今日单词已全部掌握！</div><div class="ftip">去「全部」里复习或添加新词吧</div>`;return;}
+  flashIdx=flashIdx%list.length;const v=list[flashIdx];
+  flipped=false;
+  $("#flashCard").innerHTML=`<div class="fw">${esc(v.w)}</div><div class="fp">${esc(v.py)}</div><div class="ftip">点击卡片翻面查看释义</div>`;
+}
+function flipFlash(){
+  const list=reviewList();if(!list.length)return;
+  const v=list[flashIdx];
+  if(!flipped){
+    flipped=true;
+    $("#flashCard").innerHTML=`<div class="fw">${esc(v.w)}</div><div class="fp">${esc(v.py)}</div><div class="fa">${esc(v.m)}<br><span style="color:var(--ink-3);font-size:14px">${esc(v.ex)}</span></div><div class="ftip">点击卡片下方按钮标记记忆状态</div>`;
+  }
+}
+
+/* ===== 弹窗 ===== */
+function openDetail(id){
+  const trm=termOf(id);const st=STAGES.find(s=>s.id===id.split("_")[0]);const [name,desc]=st.tasks[+id.split("_")[1]];
+  const sts=state.stageStatus[id]||0;
+  $("#modalBox").innerHTML=`<button class="close-x" onclick="closeModal()">×</button>
+    <div class="mtag">知识点详解 · ${esc(st.badge)}</div><h2>${esc(name)}</h2>
+    <div class="intro">${esc(desc)}</div>
+    <div class="sec"><div class="t">📖 名词解释</div><ul>${trm.intro.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+    <div class="sec"><div class="t">💡 核心要点</div><ul>${trm.points.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+    <div class="sec"><div class="t">⚠️ 常见陷阱</div><ul>${trm.pitfalls.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+    <div class="sec"><div class="t">✍️ 自测题</div>${trm.quiz.map((q,i)=>`<div class="quiz"><div class="q">Q${i+1}. ${esc(q)}</div><div class="a" id="aq${i}">A: ${esc(trm.answer[i]||"")}</div><button class="btn ghost sm" onclick="this.previousElementSibling.classList.toggle('show');this.textContent=this.previousElementSibling.classList.contains('show')?'隐藏答案':'显示答案'">显示答案</button></div>`).join("")}</div>
+    <div class="sec"><div class="t">🚀 深入学习</div>${trm.deep.map(x=>`<span class="pill">${esc(x)}</span>`).join("")}</div>
+    <div class="sec"><div class="t">🎯 掌握度</div><div class="mastery">${MASTERY.map((m,i)=>`<button class="${i===sts?'on':''}" data-m="${i}" onclick="setMastery('${id}',${i})">${m}</button>`).join("")}</div></div>`;
+  $("#modal").classList.add("show");document.body.style.overflow="hidden";
+}
+function setMastery(id,m){
+  state.stageStatus[id]=m;save();
+  $$("#modalBox .mastery button").forEach(b=>b.classList.toggle("on",+b.dataset.m===m));
+  renderDash();renderTasks();toast("掌握度："+MASTERY[m]);
+}
+function openCheckinModal(t){
+  const opt=TASK_IDS.map(id=>`<option value="${id}">${esc(STAGES.find(s=>s.id===id.split("_")[0]).badge)} · ${esc(stName(id))}</option>`).join("");
+  $("#modalBox").innerHTML=`<button class="close-x" onclick="closeModal()">×</button>
+    <div class="mtag">每日打卡</div><h2>今天主攻哪个任务？</h2>
+    <div class="intro">选一个今天主要推进的任务，让打卡记录变成可回看的学习轨迹（可不选）。</div>
+    <select id="ckTask" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;font-size:14px;background:var(--card);color:var(--ink)">
+      <option value="">（不指定，只打卡）</option>${opt}</select>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="btn primary" id="ckOk" style="flex:1">✔ 打卡并记录</button>
+      <button class="btn ghost" id="ckSkip" style="flex:1">只打卡</button>
+    </div>`;
+  $("#modal").classList.add("show");document.body.style.overflow="hidden";
+  const doCheckin=(withLog)=>{
+    const v=$("#ckTask").value;state.checkins[t]=true;
+    if(v)state.checkinTasks[t]=v;else delete state.checkinTasks[t];
+    if(withLog&&v){
+      const st=STAGES.find(s=>s.id===v.split("_")[0]);const taskName=st?st.tasks[+v.split("_")[1]][0]:v;
+      const d=new Date();const ts=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
+      state.logs.unshift({ts,text:`主攻任务打卡：${taskName}`});
+    }
+    save();closeModal();toast("打卡成功 💪 学点东西再走");renderDash();
+  };
+  $("#ckOk").addEventListener("click",()=>doCheckin(true));
+  $("#ckSkip").addEventListener("click",()=>doCheckin(false));
+}
+function closeModal(){$("#modal").classList.remove("show");document.body.style.overflow="";}
+
+/* ===== 番茄钟 ===== */
+const PM={work:{t:25*60,label:"专注"},short:{t:5*60,label:"短休"},long:{t:15*60,label:"长休"}};
+let pomoMode="work",pomoEndAt=0,pomoTicking=false,pomoDoneCount=0,pomoTimer=null;
+function fmt(s){return `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;}
+function renderPomo(){
+  const remain=Math.max(0,Math.round((pomoEndAt-Date.now())/1000));
+  const total=PM[pomoMode].t;const pct=total?Math.round((1-remain/total)*100):0;
+  $("#pomoRing").style.setProperty("--p",pct);
+  $("#pomoTime").textContent=fmt(remain);
+  $("#pomoMode").textContent=PM[pomoMode].label;
+}
+function pomoStart(){
+  if(pomoTicking){pomoPause();return;}
+  const remain=Math.max(0,Math.round((pomoEndAt-Date.now())/1000));
+  if(!pomoEndAt||remain<=0)pomoEndAt=Date.now()+PM[pomoMode].t*1000;
+  pomoTicking=true;$("#pomoToggle").textContent="暂停";
+  pomoTimer=setInterval(()=>{
+    const r=Math.max(0,Math.round((pomoEndAt-Date.now())/1000));
+    renderPomo();
+    if(r<=0){
+      clearInterval(pomoTimer);pomoTicking=false;
+      if(pomoMode==="work"){
+        pomoDoneCount++;const mins=Math.round(PM.work.t/60);
+        state.pomo.total+=mins;if(state.pomo.date===todayStr())state.pomo.today+=mins;save();
+        if(pomoDoneCount%4===0){pomoMode="long";}else{pomoMode="short";}
+        toast("🍅 专注完成！该休息一下啦");
+      }else{toast("休息结束，继续加油 💪");pomoMode="work";}
+      pomoEndAt=0;renderPomo();$("#pomoToggle").textContent="开始";
+      $$("#pomoModes button").forEach(b=>b.classList.toggle("on",b.dataset.m===pomoMode));
+      $("#pomoToday").textContent=state.pomo.today;$("#pomoTotal").textContent=state.pomo.total;
+    }
+  },500);
+}
+function pomoPause(){pomoTicking=false;clearInterval(pomoTimer);$("#pomoToggle").textContent="继续";}
+function pomoReset(){pomoTicking=false;clearInterval(pomoTimer);pomoEndAt=0;pomoMode="work";$$("#pomoModes button").forEach(b=>b.classList.toggle("on",b.dataset.m==="work"));renderPomo();$("#pomoToggle").textContent="开始";}
+
+/* ===== 备份 / 导入 / 快照 ===== */
+function exportData(){
+  const data=JSON.stringify(state,null,2);
+  const blob=new Blob([data],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download=`cet-backup-${todayStr()}.json`;a.click();toast("已导出备份 ⬇");
+}
+function makeSnapshot(){state.snap=JSON.stringify(state);save();toast("已创建快照 🛟");}
+function restoreSnapshot(){
+  if(!state.snap){toast("没有可用快照");return;}
+  if(confirm("确定恢复到最近一次快照？当前未保存的更改会丢失。")){
+    state=Object.assign(defaultState(),JSON.parse(state.snap));save();renderAll();toast("已恢复快照");
+  }
+}
+function importData(txt){
+  try{
+    const data=JSON.parse(txt);
+    if(typeof data!=="object")throw 0;
+    makeSnapshot();
+    state=Object.assign(defaultState(),data);
+    if(!state.pomo)state.pomo={total:0,today:0,date:todayStr()};
+    if(state.pomo.date!==todayStr())state.pomo.today=0;
+    save();renderAll();toast("导入成功 ✓");closeModal();
+  }catch(e){toast("JSON 解析失败，请检查格式");}
+}
+
+/* ===== 工具 ===== */
+let toastTimer=null;
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200);}
+function switchTab(name){
+  $$(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));
+  $$(".panel").forEach(p=>p.classList.toggle("active",p.id==="panel-"+name));
+  if(name==="words"){renderFlash();}
+  if(name==="res")renderRes();
+}
+
+/* ===== 事件绑定 ===== */
+function bind(){
+  // tab
+  $$(".tab").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
+  // 顶部按钮
+  $("#btnBackup").addEventListener("click",exportData);
+  $("#btnImport").addEventListener("click",()=>{$("#importText").value="";$("#importModal").classList.add("show");document.body.style.overflow="hidden";});
+  $("#btnSnap").addEventListener("click",restoreSnapshot);
+  $("#btnTheme").addEventListener("click",()=>{state.theme=state.theme==="dark"?"light":"dark";applyTheme();save();});
+  // 导入弹窗
+  $("#importDo").addEventListener("click",()=>{const v=$("#importText").value.trim();if(v)importData(v);});
+  $("#importFile").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$("#importText").value=r.result;};r.readAsText(f);});
+  // 打卡
+  $("#dashCheckinBtn").addEventListener("click",()=>openCheckinModal(todayStr()));
+  // 任务筛选
+  $$("#taskFilter button").forEach(b=>b.addEventListener("click",()=>{taskFilter=b.dataset.lvl;$$("#taskFilter button").forEach(x=>x.classList.toggle("on",x===b));renderTasks();}));
+  // 任务点击（事件委托）
+  $("#stagesBox").addEventListener("click",e=>{
+    const tg=e.target.closest("[data-toggle]");
+    if(tg){const id=tg.dataset.toggle;const cur=state.stageStatus[id]||0;state.stageStatus[id]=cur>=3?0:cur+1;save();renderTasks();renderDash();return;}
+    const op=e.target.closest("[data-open]");
+    if(op)openDetail(op.dataset.open);
+  });
+  // 待办/薄弱点跳转
+  document.addEventListener("click",e=>{
+    const g=e.target.closest("[data-go-task]");
+    if(g){switchTab("tasks");setTimeout(()=>{const el=$(`[data-open="${g.dataset.goTask}"]`);if(el)el.scrollIntoView({behavior:"smooth",block:"center"});},50);return;}
+    const gw=e.target.closest("[data-go-words]");
+    if(gw){switchTab("words");}
+  });
+  // 笔记
+  $("#noteSave").addEventListener("click",()=>{state.notes=$("#noteBox").value;save();const st=$("#noteStatus");st.textContent="已保存 ✓";setTimeout(()=>st.textContent="",1800);});
+  $("#logAdd").addEventListener("click",()=>{const v=$("#logBox").value.trim();if(!v)return toast("先写点什么再记");const d=new Date();const ts=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;state.logs.unshift({ts,text:v});save();renderNotes();toast("已记录 ✓");$("#logBox").value="";});
+  $("#logList").addEventListener("click",e=>{const b=e.target.closest(".del");if(b){state.logs.splice(+b.dataset.i,1);save();renderNotes();}});
+  // 番茄钟
+  $("#pomoToggle").addEventListener("click",pomoStart);
+  $("#pomoReset").addEventListener("click",pomoReset);
+  $$("#pomoModes button").forEach(b=>b.addEventListener("click",()=>{pomoMode=b.dataset.m;pomoEndAt=0;pomoTicking=false;clearInterval(pomoTimer);$$("#pomoModes button").forEach(x=>x.classList.toggle("on",x===b));renderPomo();$("#pomoToggle").textContent="开始";}));
+  // 单词本
+  $("#flashCard").addEventListener("click",flipFlash);
+  $$("#flashCardBox [data-ws]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();markFlash(+b.dataset.ws);}));
+  $("#wordSearch").addEventListener("input",e=>renderWords(wordFilterVal,e.target.value));
+  $$("#wordFilter button").forEach(b=>b.addEventListener("click",()=>{wordFilterVal=b.dataset.wlvl;$$("#wordFilter button").forEach(x=>x.classList.toggle("on",x===b));renderWords(wordFilterVal,$("#wordSearch").value);}));
+  $("#wordList").addEventListener("click",e=>{const w=e.target.closest("[data-word]");if(w)cycleWord(w.dataset.word);});
+  // 快捷键
+  document.addEventListener("keydown",e=>{
+    if(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA")return;
+    if(e.key==="Escape")closeModal();
+    const map={"1":"dash","2":"tasks","3":"pomo","4":"words","5":"notes","6":"res"};
+    if(map[e.key])switchTab(map[e.key]);
+  });
+}
+let wordFilterVal="all";
+function cycleWord(w){
+  const cur=state.vocab[w]?state.vocab[w].s:0;
+  const next=(cur+1)%3;
+  const t=todayStr();
+  if(next>=2)state.vocab[w]={s:next,ts:t};else state.vocab[w]={s:next,ts:state.vocab[w]?state.vocab[w].ts:t};
+  save();renderWords(wordFilterVal,$("#wordSearch").value);renderDash();
+  toast(["已标记：未记","已标记：模糊","已标记：已记住"][next]);
+}
+function markFlash(s){
+  const list=reviewList();if(!list.length)return;const v=list[flashIdx];
+  const t=todayStr();
+  state.vocab[v.w]={s,ts:t};save();
+  flashIdx++;renderFlash();renderWords(wordFilterVal,$("#wordSearch").value);renderDash();
+  toast(["😶 没记住，已放回队列","🤔 模糊，下次再练","😎 已记住！"] [s]);
+}
+function applyTheme(){
+  if(state.theme==="dark")document.documentElement.setAttribute("data-theme","dark");
+  else document.documentElement.removeAttribute("data-theme");
+  $("#btnTheme").textContent=state.theme==="dark"?"☀️":"🌙";
+}
+function renderAll(){applyTheme();renderDash();renderTasks();renderNotes();renderRes();renderWords("all","");renderPomo();}
+
+/* ===== 启动 ===== */
+load();bind();renderAll();
+</script>
+</body>
+</html>
